@@ -5,25 +5,25 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // Accessing the navigate function
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user data exists in localStorage
+    
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  }, []); // Run this effect only once on component mount
+  }, []); 
 
   const login = (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Save user data to localStorage
+    localStorage.setItem('user', JSON.stringify(userData)); 
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user'); // Remove user data from localStorage upon logout
-    navigate('/login'); // Redirect to the login page upon logout
+    localStorage.removeItem('user'); 
+    navigate('/login'); 
   };
 
   return (
