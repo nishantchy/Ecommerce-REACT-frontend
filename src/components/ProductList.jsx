@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/productlist.css'
 
 const ProductList = () => {
-
+    const[limit, setLimit] = useState(8)
     const[products, setProducts] = useState([]);
     const getProductList = async () => {
         const url = "http://127.0.0.1:8000/api/product";
@@ -11,7 +11,7 @@ const ProductList = () => {
         try{
             const responseJson = await response.json();
             console.log(responseJson);
-            setProducts(responseJson.results);
+            setProducts(responseJson.message);
         }catch(err){
             console.log(err);
         }
@@ -19,6 +19,14 @@ const ProductList = () => {
     useEffect(()=>{
         getProductList()
     },[])
+
+    const loadMore = () => {
+        setLimit(prevLimit => prevLimit + 4);
+    };
+
+    const loadLess = () => {
+        setLimit(8);
+    };
         
     return (
         <>
@@ -28,7 +36,7 @@ const ProductList = () => {
                         <div className="col-md-12">
                             <h4 className="mb-4">Our Products</h4>
                         </div>
-                        {products && products.map(product => (
+                        {products && products.slice(0,limit).map(product => (
                             <div className="col-md-3" key={product.id}>
                                 <div className="product-card">
                                     <div className="product-card-img">
@@ -38,6 +46,7 @@ const ProductList = () => {
                                             <label className="stock bg-danger">Out of Stock</label>
                                         )}
                                         <img src={`http://127.0.0.1:8000/storage/${product.image}`} alt={product.name} />
+
                                     </div>
                                     <div className="product-card-body">
                                         <p className="product-brand">{product.name}</p>
@@ -58,6 +67,17 @@ const ProductList = () => {
                             </div>
                         ))}
                     </div>
+                    
+                    <div className="row">
+                        <div className="col-md-12 text-center">
+                            {limit < products.length ? (
+                                <button className='btn btn-warning' onClick={loadMore}>Load More</button>
+                            ) : (
+                                <button className='btn btn-warning' onClick={loadLess}>Load Less</button>
+                            )}
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </>

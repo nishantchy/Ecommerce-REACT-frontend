@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const [inputErrorList, setInputErrorList] = useState({})
@@ -26,7 +28,7 @@ const SignUp = () => {
 
     axios.post(`http://localhost:8000/api/register`, data)
     .then(res => {
-      alert(res.data.message);
+      toast.success(res.data.message)
     })
     .catch(function (error){
       if(error.response.status === 422){
@@ -36,6 +38,7 @@ const SignUp = () => {
   }
   return (
     <>
+    <ToastContainer theme='colored' position='top-center'/>
      <div className="container">
      <form onSubmit={saveUser}>
         <div className="mb-3">

@@ -15,7 +15,8 @@
     font-size: 12px;
 }
 .product-card .product-card-img{
-    max-height: 260px;
+    max-height: 180px;
+    object-fit: cover;
     overflow: hidden;
     border-bottom: 1px solid #ccc;
 }
