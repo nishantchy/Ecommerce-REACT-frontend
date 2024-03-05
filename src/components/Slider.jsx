@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/slider.css'
-import sliderImg from "../assets/Images/slider1.jpg";
+import sliderImg from "../assets/Images/frame1.png";
 import sliderImg2 from "../assets/Images/slider2.jpg";
 import sliderImg3 from "../assets/Images/slider3.jpg";
 const Slider = () => {

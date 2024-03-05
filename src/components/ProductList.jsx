@@ -56,11 +56,11 @@ const ProductList = () => {
                                             </Link>
                                         </h5>
                                         <div>
-                                            <span className="selling-price">${product.sale_price}</span>
-                                            <span className="original-price">${product.list_price}</span>
+                                            <span className="selling-price">Rs.{product.sale_price}</span>
+                                            <span className="original-price">Rs.{product.list_price}</span>
                                         </div>
                                         <div className="mt-2">
-                                            <Link to={`/${product.id}`} className="btn btn1">View</Link>
+                                            <Link to={`/productdetails/${product.id}`} className="btn btn1">View</Link>
                                         </div>
                                     </div>
                                 </div>

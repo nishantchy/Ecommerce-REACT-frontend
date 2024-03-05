@@ -62,7 +62,7 @@ const SignUp = () => {
           {inputErrorList.password_confirm && <span className='text-danger'>{inputErrorList.password_confirm[0]}</span>}
         </div>
         <div className="btn">
-          <button type='submit' className='btn btn-primary'>Register</button>
+          <button type='submit' className='btn btn-dark opacity-52'>Register</button>
         </div>
       </form>
       <p className='text-start'>Already Have an Account? <Link to="/login">Login</Link></p>

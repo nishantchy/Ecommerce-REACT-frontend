@@ -5,9 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../AuthContext';
+import { useState, useEffect } from 'react'
 
 const Navbar = () => {
     const {user, logout} = useAuth();
+    const [cartItemCount, setCartItemCount] = useState(0);
+
+    useEffect(() => {
+        // Retrieve cart items from local storage
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        // Calculate total number of products in the cart
+        const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        setCartItemCount(totalItems);
+    }, []);
   return (
     <>
 <div className="main-navbar shadow-sm sticky-top">
@@ -32,7 +42,7 @@ const Navbar = () => {
                             
                             <li className="nav-item">
                                 <Link className="nav-link" to="/cart">
-                                <FontAwesomeIcon icon={faCartShopping} /> Cart (0)
+                                <FontAwesomeIcon icon={faCartShopping} /> Cart ({cartItemCount})
                                 </Link>
                             </li>
                             {user ? (

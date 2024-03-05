@@ -48,7 +48,7 @@ const Login = () => {
           {error && <span className='text-danger'>{error}</span>}
         </div>
         <div className="btn">
-          <button type='submit' className='btn btn-primary'>Login</button>
+          <button type='submit' className='btn btn-dark opacity-52'>Login</button>
         </div>
         </form>
         <p className='text-start'>Don't have an Account? <Link to="/signup">Sign Up</Link></p>
